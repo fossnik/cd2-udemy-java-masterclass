@@ -7,8 +7,11 @@ public class Challenge {
 
 		long zlong = 50000L;
 
-		zlong += 10 * (zbyte + zshort + zint);
+		long longTotal = 10L * (zbyte + zshort + zint);
+		System.out.println("longTotal equals: " + longTotal);
 
-		System.out.println("zbyte equals: " + zlong);
+		short shortTotal = (short) longTotal;
+		System.out.println("shortTotal equals: " + shortTotal);
+
 	}
 }
