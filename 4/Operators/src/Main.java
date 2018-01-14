@@ -58,5 +58,20 @@ public class Main {
 		if (topScore > secondTopScore && topScore < 100)
 			System.out.println("Greater than second top score and less then 100");
 
+		if ((topScore > 90) || (topScore < 90))
+			System.out.println("One of these tests is true");
+
+		boolean isCar = false;
+		if(isCar)
+			System.out.println("isCar is True");
+
+		// ternary operator (set a value based on two conditions)
+		isCar = true;
+
+		// returns true if isCar is true, otherwise false
+		boolean wasCar = isCar ? true : false;
+		if(wasCar)
+			System.out.println("wasCar is true");
+
 	}
 }
