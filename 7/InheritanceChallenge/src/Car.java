@@ -11,13 +11,13 @@ public class Car extends Vehicle {
 		this.currentGear = 1;
 	}
 
-	public void setCurrentGear(int currentGear) {
+	public void changeGear(int currentGear) {
 		this.currentGear = currentGear;
-		System.out.printf("Car.setCurrentGear(): Changed to %s\n", currentGear);
+		System.out.printf("Car.changeGear(): Changed to %s\n", currentGear);
 	}
 
 	public void changeVelocity(int speed, int direction) {
+		System.out.printf("Car.changeVelocity():\n Velocity is %s, and Direction is %s\n", speed, direction);
 		move(speed, direction);
-		System.out.printf("Car.changeVelocity():\n Velocity is %s, and Speed is %s\n", speed, direction);
 	}
 }
