@@ -5,9 +5,9 @@ public class Printer {
 	private boolean isDuplex;
 
 	// default constructor for new printer
-	public Printer(int tonerLevel, int printedPages, boolean isDuplex) {
+	public Printer(int tonerLevel, boolean isDuplex) {
 		this.tonerLevel = tonerLevel;
-		this.printedPages = printedPages;
+		this.printedPages = 0;
 		this.isDuplex = isDuplex;
 	}
 
@@ -15,30 +15,21 @@ public class Printer {
 		return tonerLevel;
 	}
 
-	public void setTonerLevel(int tonerLevel) {
-		this.tonerLevel = tonerLevel;
-	}
-
 	public int getPrintedPages() {
 		return printedPages;
-	}
-
-	public void setPrintedPages(int printedPages) {
-		this.printedPages = printedPages;
 	}
 
 	public boolean isDuplex() {
 		return isDuplex;
 	}
 
-	public void setDuplex(boolean duplex) {
-		isDuplex = duplex;
-	}
-
 	public void printpages(int numPages) {
-		System.out.printf("Printing %s page(s)\n", numPages);
-		tonerLevel -= numPages;
-		printedPages += numPages;
+		if (tonerLevel - numPages > 0) {
+			System.out.printf("Printing %s page(s)\n", numPages);
+			tonerLevel -= numPages;
+			printedPages += numPages;
+		}
+		else System.out.printf("Insufficient Toner to print %s page(s)\n", numPages);
 	}
 
 	public void tonerReplace(int tonerSize) {

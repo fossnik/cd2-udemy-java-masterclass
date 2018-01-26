@@ -2,7 +2,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Printer printer1 = new Printer(1000, 0, false);
+		Printer printer1 = new Printer(1000, false);
 
 		System.out.printf("Printer Type:\nDuplex: %s\n", printer1.isDuplex());
 
