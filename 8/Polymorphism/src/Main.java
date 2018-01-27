@@ -18,7 +18,7 @@ public class Main {
 
 	class Jaws extends Movie {
 		public Jaws() {
-			super("Jaws")
+			super("Jaws");
 		}
 
 		public String plot() {
@@ -67,7 +67,7 @@ public class Main {
 		// No plot method
 	}
 
-	public static void main(String[] args) {
+	public void main(String[] args) {
 		for(int i=1; i<11; i++) {
 			Movie movie = randomMovie();
 			System.out.println("Movie #" + i +
@@ -76,7 +76,7 @@ public class Main {
 		}
 	}
 
-	public static Movie randomMovie() {
+	public Movie randomMovie() {
 		int randomNumber = (int) (Math.random() * 5) +1;
 		System.out.println("Random number generated was: " + randomNumber);
 		switch (randomNumber) {
