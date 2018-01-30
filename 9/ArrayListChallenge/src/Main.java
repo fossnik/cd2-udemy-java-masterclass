@@ -1,84 +1,8 @@
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Scanner;
-
-public class MobilePhone {
-	// Create a master class (MobilePhone) that holds the ArrayList of Contacts
-	// Able to store, modify, remove and query contact names.
-	// MobilePhone should do everything with Contact objects only.
-
-	private String myNumber;
-	private ArrayList<Contact> myContacts;
-
-	public MobilePhone(String myNumber) {
-		this.myNumber = myNumber;
-		this.myContacts = new ArrayList<Contact>();
-	}
-
-	public boolean addNewContact(Contact contact) {
-
-		// When adding or updating be sure to check if the contact already exists (use name)
-		if (findContact(contact.getName()) >= 0) {
-			System.out.println("Contact Already Exists");
-			return false;
-		}
-
-		myContacts.add(contact);
-		return true;
-	}
-
-	public boolean updateContact(Contact oldContact, Contact newContact) {
-		int foundPosition = findContact(oldContact);
-		if (foundPosition < 0) {
-			System.out.println(oldContact.getName() + " was not found.");
-			return false;
-		}
-
-		this.myContacts.set(foundPosition, newContact);
-		System.out.println(oldContact.getName() + " was replaced with " + newContact);
-	}
-
-	private int findContact(Contact contact) {
-		return myContacts.indexOf(contact);
-	}
-
-	private int findContact(String contactName) {
-		for (int i = 0; i < this.myContacts.size(); i++) {
-			Contact contact = this.myContacts.get(i);
-			if (contact.getName().equals(contactName))
-				return i;
-		}
-		return -1;
-	}
-}
-
-public class Contact {
-
-	// You will want to create a separate class for Contacts (name and phone number).
-	// Be sure not to expose the inner workings of the Arraylist to MobilePhone
-
-	private String name, phone;
-
-	public Contact(String name, String phone) {
-		this.name = name;
-		this.phone = phone;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public static Contact createContact(String name, String phone) {
-		return new Contact(name, phone);
-	}
-}
 
 public class Main {
 	private static Scanner scanner = new Scanner(System.in);
+	private static MobilePhone mobilePhone = new MobilePhone("0039 330 4404");
 
     public static void main(String[] args) {
 
@@ -87,34 +11,53 @@ public class Main {
 		// Quit, print list, add new contact, update existing, remove, and search/find contact.
 		int choice = 0;
 
-		while (choice != 5) {
+		while (choice != 6) {
 			System.out.println("\n" +
 					"\t 1 - Print Contacts\n" +
 					"\t 2 - Add New.\n" +
 					"\t 3 - Update Existing.\n" +
 					"\t 4 - Remove Contact.\n" +
-					"\t 5 - QUIT\n");
+					"\t 5 - Query Contact.\n" +
+					"\t 6 - QUIT\n");
 
 			choice = scanner.nextInt();
 			scanner.nextLine();
 
 			switch (choice) {
 				case 1:
-					groceryList.printGroceryList();
+					mobilePhone.printContacts();
 					break;
 				case 2:
-					addItem();
+					addNewContact();
 					break;
 				case 3:
-					modifyItem();
+					updateContact();
 					break;
 				case 4:
-					removeItem();
+					removeContact();
 					break;
 				case 5:
-					searchForItem();
+					queryContact();
 					break;
+				case 6:
+					System.out.println("Goodbye");
+				default:
 			}
 		}
     }
+
+    private static void addNewContact() {
+		System.out.println("Enter contact name:");
+		String name = scanner.nextLine();
+
+		System.out.println("Enter contact phone:");
+		String phone = scanner.nextLine();
+
+		Contact newContact = Contact.createContact(name, phone);
+
+		if (mobilePhone.addNewContact(newContact))
+			System.out.println("New contact added: name = " + name + ", phone = " + phone);
+		else
+			System.out.println("Cannot add. '" + name + "' already exists.");
+	}
 }
